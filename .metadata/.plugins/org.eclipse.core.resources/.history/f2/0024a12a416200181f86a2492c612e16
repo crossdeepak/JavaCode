@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	 xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+   http://www.springframework.org/schema/beans     
+   http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<bean id="address" class="com.cg.beans.Address">
+		<property name="city" value="Durgapur"></property>
+		<property name="state" value="West Bengal"></property>
+		<property name="pincode" value="713202"></property>
+		<property name="country" value="India"></property>
+	</bean>
+	
+	<bean id="associate" class="com.cg.beans.Associate">
+		<property name="associateId" value="111"></property>
+		<property name="firstName" value="Deepak"></property>
+		<property name="lastName" value="Kumar"></property>
+		<property name="address" ref="address"></property>
+	</bean>
+
+</beans>

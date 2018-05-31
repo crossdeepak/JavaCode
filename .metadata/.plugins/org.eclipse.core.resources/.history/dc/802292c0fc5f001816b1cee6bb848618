@@ -1,0 +1,13 @@
+package com.cg.main;
+
+import com.cg.beans.Associate;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		ApplicationContext applicationContext=new ClassPathXmlApplicationContext("projectbeans.xml");
+		Associate associate=(Associate) applicationContext.getBean("associate");
+		System.out.println(associate);
+	}
+
+}

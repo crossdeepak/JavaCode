@@ -1,0 +1,21 @@
+package com.cg.services;
+
+public class GreetingServicesNewImpl implements GreetingServices{
+
+	public GreetingServicesNewImpl() {
+		System.out.println("GreetingServicesNewImpl");
+	}
+	
+	@Override
+	public void sayHello(String personName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sayGoodBye(String personName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

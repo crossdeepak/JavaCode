@@ -1,0 +1,256 @@
+package com.cg.payroll.main;
+
+import java.io.IOException;
+import java.sql.JDBCType;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import com.cg.payroll.beans.Associate;
+import com.cg.payroll.beans.BankDetails;
+import com.cg.payroll.beans.Salary;
+import com.cg.payroll.services.PayrollServices;
+import com.cg.payroll.services.PayrollServicesImpl;
+import com.cg.payroll.utilities.PayrollUtility;
+import com.cg.payroll.exception.AssociateDetailsNotFoundException;
+import com.cg.payroll.exception.PayrollServicesDownException;
+
+public class MainClass {
+
+	public static void main(String[] args) throws PayrollServicesDownException, SQLException {	
+		ApplicationContext applicationContext=new ClassPathXmlApplicationContext("projectbeans.xml");
+		PayrollServices payrollServices=(PayrollServices)applicationContext.getBean("payrollServices");
+	//	System.out.println(payrollServices.acceptAssociateDetails("kalyan", "k", "a.com", "java", "analyst", "e688", 15, 300000, 12000, 12000, 3456, "hdfc", "hdfc101"));
+	//	Associate associate=new Associate(12,60000,"anusha","l",
+	//			"mf", "general manager", "ffy57", "anusha@gmail.com", new Salary(9000, 200, 200),
+	//		new	BankDetails(200, "icici", "icici11"));
+	//	System.out.println(payrollServices.updateAssociateDetails(associate));
+	//	System.out.println(payrollServices.deleteAssociateDetails(18));
+	
+		 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*	PayrollServices payrollServices=new PayrollServicesImpl();
+		try{
+			PayrollUtility.getDBConnection();
+			System.out.println("connection open");
+			System.out.println(payrollServices.acceptAssociateDetails("sindhu", "kalakonda", "a.com", "java", "analyst", "e688", 0, 300000, 12000, 12000, 3456, "hdfc", "hdfc101"));
+		//	System.out.println(payrollServices.acceptAssociateDetails("siri", "kalakonda", "a.com", "java", "analyst", "e688", 0, 300000, 12000, 12000, 3456, "hdfc", "hdfc101"));
+			Associate associate=new Associate(5,50000,"anand","k",
+					"java", "manager", "efy56", "anand@gmail.com", new Salary(8000, 100, 100),
+				new	BankDetails(100, "hdfc", "hdfc11"));
+			System.out.println(payrollServices.updateAssociateDetails(associate));
+		}
+		catch(PayrollServicesDownException e){
+			e.printStackTrace();
+		}*/
+	}
+}
+
+
+/*		try{
+		PayrollServices payrollServices = new PayrollServicesImpl();
+		int associateId;
+		int key=0;
+		Scanner sc=new Scanner(System.in);
+		while(key!=7){
+			System.out.println("Enter\n1 : Insert New employee"+"\n"+"2 : Update Associate Details"+"\n"+
+					"3 : To get Associate Details of employee"+"\n"+
+					"4 : To get  All Associate Details of employee"+"\n"+"5 : To Calculate salary of employee"+"\n"+
+					"6 : To delete an employee"+"\n"+"7 : Exit");
+			key=sc.nextInt();
+			switch(key){
+			case 1: System.out.println("Enter First Name : ");
+			String firstName=sc.next();
+			System.out.println("Enter Last Name");
+			String lastName=sc.next();
+			System.out.println("Enter Designation");
+			String designation=sc.next();
+			System.out.println("Enter Department");
+			String department=sc.next();
+			System.out.println("Enter Pancard Number");
+			String pancard=sc.next();
+			System.out.println("Enter EmailId");
+			String emailId=sc.next();
+			System.out.println("Enter YearlyInvestment");
+			int yearlyInvestmentUnder80C=sc.nextInt();
+			System.out.println("Enter Basic Salary");
+			float basicSalary=sc.nextFloat();
+			System.out.println("Enter epf");
+			float epf=sc.nextFloat();
+			System.out.println("Enter cpf");
+			float companyPf=sc.nextFloat();
+			System.out.println("Enter Account number");
+			int accountNumber=sc.nextInt();
+			System.out.println("Enter Bank Name");
+			String bankName=sc.next();
+			System.out.println("Enter IFSC Code");
+			String ifscCode=sc.next();
+			associateId=payrollServices.acceptAssociateDetails(firstName, lastName, emailId, department, designation, pancard, yearlyInvestmentUnder80C, basicSalary, epf, companyPf, accountNumber, bankName, ifscCode);
+			System.out.println(associateId);
+			break;
+			case 2: System.out.println("Enter the Details to be Updated");
+			System.out.println("Enter Associate ID : ");
+			int id=sc.nextInt();
+			System.out.println("Enter First Name : ");
+			String firstName1=sc.next();
+			System.out.println("Enter Last Name");
+			String lastName1=sc.next();
+			System.out.println("Enter Designation");
+			String designation1=sc.next();
+			System.out.println("Enter Department");
+			String department1=sc.next();
+			System.out.println("Enter Pancard Number");
+			String pancard1=sc.next();
+			System.out.println("Enter EmailId");
+			String emailId1=sc.next();
+			System.out.println("Enter YearlyInvestment");
+			int yearlyInvestmentUnder80C1=sc.nextInt();
+			System.out.println("Enter Basic Salary");
+			float basicSalary1=sc.nextFloat();
+			System.out.println("Enter epf");
+			float epf1=sc.nextFloat();
+			System.out.println("Enter cpf");
+			float companyPf1=sc.nextFloat();
+			System.out.println("Enter Account number");
+			int accountNumber1=sc.nextInt();
+			System.out.println("Enter Bank Name");
+			String bankName1=sc.next();
+			System.out.println("Enter IFSC Code");
+			String ifscCode1=sc.next();
+			payrollServices.updateAssociateDetails(new Associate(id, yearlyInvestmentUnder80C1, firstName1, lastName1, department1, designation1, pancard1, emailId1, new Salary(basicSalary1, epf1, companyPf1), new BankDetails(accountNumber1, bankName1, ifscCode1)));
+			System.out.println("Updated Values");
+			System.out.println(payrollServices.getAssociateDetails(id).toString());
+			break;
+			case 3: System.out.println("Enter the AssociateId of employee to get the Details");
+			associateId=sc.nextInt();
+			System.out.println(payrollServices.getAssociateDetails(associateId).toString());
+			break;
+			case 4: System.out.println("Following are the Employee details of Entire Array");
+			List<Associate> associate=payrollServices.getAllAssociateDetails();
+			for(Associate associate1:associate)
+			System.out.println(associate1);
+			break;
+			case 5: System.out.println("Enter the AssociateId of employee to calculate the salary");
+			associateId=sc.nextInt();
+			System.out.println(payrollServices.calculateNetSalary(associateId));
+			break;
+			case 6: System.out.println("Enter the AssociateId of employee to be deleted");
+			associateId=sc.nextInt();
+			System.out.println(payrollServices.deleteAssociateDetails(associateId));
+			case 7: System.out.println("Exit");
+			break;
+			default:
+			break;
+			}
+		}
+		}
+		catch(AssociateDetailsNotFoundException e){
+			e.printStackTrace();
+		}
+		catch(PayrollServicesDownException e){
+			e.printStackTrace();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+}
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*package com.cg.payroll.main;
+
+import com.cg.payroll.beans.Associate;
+import com.cg.payroll.beans.BankDetails;
+import com.cg.payroll.beans.Salary;
+import com.cg.payroll.daoservices.PayrollDAOServicesImpl;
+import com.cg.payroll.exception.AssociateDetailsNotFoundException;
+import com.cg.payroll.exception.PayrollServicesDownException;
+import com.cg.payroll.services.PayrollServices;
+import com.cg.payroll.services.PayrollServicesImpl;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		try{
+			PayrollServices payrollServices=new PayrollServicesImpl();
+			int associateId=payrollServices.acceptAssociateDetails("sindhu", "kalakonda", "a.com", "java", "analyst", "e688", 0, 300000, 12000, 12000, 3456, "hdfc", "hdfc101");
+			int associateId1=payrollServices.acceptAssociateDetails("vyuha", "kalakonda", "a.com", "java", "analyst", "e688", 1465, 100, 77, 67, 3456, "hdfc", "hdfc101");
+			int associateId2=payrollServices.acceptAssociateDetails("anand", "kalakonda", "a.com", "java", "analyst", "e688", 1465, 100, 77, 67, 3456, "hdfc", "hdfc101");
+			System.out.println(associateId);
+			System.out.println(associateId1);
+			System.out.println(associateId2);
+			System.out.println(payrollServices.getAssociateDetails(associateId).getFirstName());
+			System.out.println(payrollServices.getAssociateDetails(associateId1).getFirstName());
+			System.out.println(payrollServices.getAssociateDetails(associateId2).getFirstName());
+			double netSalary=payrollServices.calculateNetSalary(associateId);
+			System.out.println("Basic salary is "+payrollServices.getAssociateDetails(associateId).getSalary().getBasicSalary());
+//			System.out.println("Monthly tax is "+payrollServices.getAssociateDetails(associateId).getSalary().getMonthlyTax());
+			System.out.println("Net salary is "+payrollServices.getAssociateDetails(associateId).getSalary().getNetSalary());
+			payrollServices.deleteAssociateDetails(112);
+			System.out.println(payrollServices.deleteAssociateDetails(115));;
+			System.out.println(associateId);
+			System.out.println(associateId1);
+			System.out.println(associateId2);
+			System.out.println(payrollServices.getAssociateDetails(120));
+			System.out.println(payrollServices.getAssociateDetails(associateId).getFirstName());
+			System.out.println(payrollServices.getAssociateDetails(associateId1).getFirstName());
+			System.out.println(payrollServices.getAssociateDetails(associateId2).getFirstName());
+
+		}
+		catch(AssociateDetailsNotFoundException e){
+			System.out.println("Associate details are not found");
+		}
+		catch(PayrollServicesDownException e){
+			System.out.println("Exception");
+		}
+		//	catch(NullPointerException e){
+		//			System.out.println("Associate id is not found");
+
+		//		}
+		//		catch(Exception e){
+		//			System.out.println("Associate not found");
+		//		}
+	}
+}*/
